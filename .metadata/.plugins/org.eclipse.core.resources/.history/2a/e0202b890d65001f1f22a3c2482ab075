@@ -1,0 +1,46 @@
+package com.java.intprac;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class MissingTwoPlusNum {
+	
+	public static void main(String[] args) {
+		int[] nums = {2,3,4,5,8,9,10};
+		Set<Integer> missingNumber = findMissingNumber(nums);
+		System.out.println("Missing Number : "+missingNumber);
+	}
+	
+	public static Set<Integer> findMissingNumber(int[] nums){
+		
+		int min = Integer.MIN_VALUE;
+		int max = Integer.MAX_VALUE;
+		
+	    Set<Integer> missingNumbers = new HashSet<>();
+	    Set<Integer> numSet = new HashSet<>();
+	    
+	    int n = nums.length;
+	    
+	    for (int num : nums) {
+			numSet.add(num);
+			
+			if(num < min){
+				min = num;
+			}
+			if (num > max) {
+				max = num;
+			}
+		}
+	    
+	    for (int i = min; i < max; i++) {
+			if (!numSet.contains(i)) {
+				
+				missingNumbers.add(i);
+				
+			}
+		}
+	    
+	    return missingNumbers;
+	}
+
+}
